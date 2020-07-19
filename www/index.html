@@ -2,19 +2,20 @@
     <head>
         <meta content="text/html; charset=windows-1252" http-equiv="content-type">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
-        <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+        <link rel="stylesheet" href="bower_components/onsenui/css/onsenui.css">
+        <link rel="stylesheet" href="bower_components/onsenui/css/onsen-css-components.min.css">
         <link rel="stylesheet" href="css/index.css">
-        <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+        <script src="bower_components/onsenui/js/onsenui.min.js"></script>
         <script src="js/index.js"></script>
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="bower_components/axios/dist/axios.min.js"></script>
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
     </head>
     <body> 
         <ons-splitter>
             <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
                 <ons-page>
                     <ons-list>
-                        <ons-list-item onclick="fn.load('feed.html')" tappable>
+                        <ons-list-item onclick="fn.load('index.html')" tappable>
                             Main
 </ons-list-item>
                         <ons-list-item onclick="fn.load('setup-return.html')" tappable>
@@ -28,13 +29,15 @@
             </ons-splitter-side>
             <ons-splitter-content id="content" page="homePage.html"></ons-splitter-content>
         </ons-splitter>
+        
         <template id="homePage.html">
             <ons-page id="homePage">
-                <ons-navigator id="myNavigator" page="feed.html"></ons-navigator>
+                <ons-navigator id="myNavigator" page="index.html"></ons-navigator>
             </ons-page>
         </template>
-        <template id="feed.html">
-            <ons-page id="feed">
+        
+        <template id="index.html">
+            <ons-page id="index">
                 <ons-toolbar>
                     <div class="left">
                         <ons-toolbar-button onclick="fn.open()">
@@ -43,16 +46,20 @@
                     </div>
                     <div class="center">SrMoura</div>
                 </ons-toolbar>
+                
                 <ons-card>
                     <div class="title">
-                      
                       <i class="fad fa-lightbulb"></i>
                         &nbsp;Cozinha
                     </div>
                     <div class="content">
-                        <p> <ons-button autofocus="autofocus" value="Feed" name="Feed" onclick="onkitchen();">Ligar</ons-button> </p>
+                        <p>
+                            <ons-switch checked id="cozinha"></ons-switch>
+                            <ons-button autofocus="autofocus" value="index" name="index" onclick="onkitchen();">Ligar</ons-button>
+                         </p>
                     </div>
                 </ons-card>
+                
                 <ons-card>
                   <div class="title">
                     
@@ -60,27 +67,32 @@
                       &nbsp;Sala de estar
                   </div>
                   <div class="content">
-                      <p> <ons-button autofocus="autofocus" value="Feed" name="Feed" onclick="toastThing();">Toast</ons-button> </p>
+                    <p>
+                    <ons-switch checked id="sala"></ons-switch>
+                       <ons-button autofocus="autofocus" value="index" name="index" onclick="onliving();">Ligar</ons-button>
+                    </p>
                   </div>
-              </ons-card>
-                <img src="b.png" style="display: none;" onload="ifgoToSetup()">
+              </ons-card> 
+               <!-- <img src="b.png" style="display: none;" onload="ifgoToSetup()">-->
             </ons-page>
         </template>
+
         <template id="setup.html">
             <ons-page id="setup">
                 <ons-toolbar>
-                    <div class="center">Name</div>
+                    <div class="center">SrMoura</div>
                 </ons-toolbar>
                 <ons-card>
                     <div class="title">Setup</div>
                     <div class="content">
-                        <p> <ons-input id="pub" modifier="underbar" placeholder="Publish Key" float=""></ons-input> </p>
-                        <p> <ons-input id="sub" modifier="underbar" placeholder="Subscribe Key" float=""></ons-input> </p>
-                        <!--<p>
-              <ons-input id="sec" modifier="underbar" placeholder="Secret Key"
-              float=""></ons-input>
-            </p>-->
+                        <p> <ons-input id="ip" modifier="underbar" placeholder="Insira ip:porta" float=""></ons-input> </p>
+                        <!--<p> <ons-input id="sub" modifier="underbar" placeholder="Subscribe Key" float=""></ons-input> </p>
+                        <p>
+                <ons-input id="sec" modifier="underbar" placeholder="Secret Key"
+                float=""></ons-input>
+              </p>-->
                         <p style="margin-top: 30px;"> <ons-button id="go-to-main">Done</ons-button> </p>
+                        <p> <ons-button id="go-cancel">Cancel</ons-button> </p>
                     </div>
                 </ons-card>
             </ons-page>
@@ -94,15 +106,15 @@
                         </ons-toolbar-button>
                     </div>
                     <div class="center">
-                        Name
+                        Setup
 </div>
                 </ons-toolbar>
                 <ons-card>
                     <div class="title">Setup</div>
                     <div class="content">
-                        <p> <ons-input id="pub" modifier="underbar" placeholder="Publish Key" float=""></ons-input> </p>
-                        <p> <ons-input id="sub" modifier="underbar" placeholder="Subscribe Key" float=""></ons-input> </p>
-                        <!--<p>
+                        <p> <ons-input id="ip" modifier="underbar" placeholder="Insira ip:porta" float=""></ons-input> </p>
+                        <!--<p> <ons-input id="sub" modifier="underbar" placeholder="Subscribe Key" float=""></ons-input> </p>
+                        <p>
                 <ons-input id="sec" modifier="underbar" placeholder="Secret Key"
                 float=""></ons-input>
               </p>-->
