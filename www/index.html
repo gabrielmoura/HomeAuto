@@ -1,128 +1,153 @@
 <html>
-    <head>
-        <meta content="text/html; charset=windows-1252" http-equiv="content-type">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="bower_components/onsenui/css/onsenui.css">
-        <link rel="stylesheet" href="bower_components/onsenui/css/onsen-css-components.min.css">
-        <link rel="stylesheet" href="css/index.css">
-        <script src="bower_components/onsenui/js/onsenui.min.js"></script>
-        <script src="js/index.js"></script>
-        <script src="bower_components/axios/dist/axios.min.js"></script>
-        <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    </head>
-    <body> 
-        <ons-splitter>
-            <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
-                <ons-page>
-                    <ons-list>
-                        <ons-list-item onclick="fn.load('index.html')" tappable>
-                            Main
-</ons-list-item>
-                        <ons-list-item onclick="fn.load('setup-return.html')" tappable>
-                            Setup
-</ons-list-item>
-                        <a href="http://google.com" target="_blank"><ons-list-item tappable>
-                                Google
-</ons-list-item></a>
-                    </ons-list>
-                </ons-page>
-            </ons-splitter-side>
-            <ons-splitter-content id="content" page="homePage.html"></ons-splitter-content>
-        </ons-splitter>
-        
-        <template id="homePage.html">
-            <ons-page id="homePage">
-                <ons-navigator id="myNavigator" page="index.html"></ons-navigator>
-            </ons-page>
-        </template>
-        
-        <template id="index.html">
-            <ons-page id="index">
-                <ons-toolbar>
-                    <div class="left">
-                        <ons-toolbar-button onclick="fn.open()">
-                            <ons-icon icon="md-menu"></ons-icon>
-                        </ons-toolbar-button>
-                    </div>
-                    <div class="center">SrMoura</div>
-                </ons-toolbar>
-                
-                <ons-card>
-                    <div class="title">
-                      <i class="fad fa-lightbulb"></i>
-                        &nbsp;Cozinha
-                    </div>
-                    <div class="content">
-                        <p>
-                            <ons-switch checked id="cozinha"></ons-switch>
-                            <ons-button autofocus="autofocus" value="index" name="index" onclick="onkitchen();">Ligar</ons-button>
-                         </p>
-                    </div>
-                </ons-card>
-                
-                <ons-card>
-                  <div class="title">
-                    
-                    <i class="fad fa-lightbulb"></i>
-                      &nbsp;Sala de estar
-                  </div>
-                  <div class="content">
-                    <p>
-                    <ons-switch checked id="sala"></ons-switch>
-                       <ons-button autofocus="autofocus" value="index" name="index" onclick="onliving();">Ligar</ons-button>
-                    </p>
-                  </div>
-              </ons-card> 
-               <!-- <img src="b.png" style="display: none;" onload="ifgoToSetup()">-->
-            </ons-page>
-        </template>
+<head>
+    <meta content="text/html; charset=windows-1252" http-equiv="content-type">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval';connect-src 'self' http://*:*" />
+    <link rel="stylesheet" href="bower_components/onsenui/css/onsenui.min.css">
+    <link rel="stylesheet" href="bower_components/onsenui/css/onsen-css-components.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="bower_components/onsenui/js/onsenui.min.js"></script>
+    <script src="js/index.min.js"></script>
+    <script src="bower_components/axios/dist/axios.min.js"></script>
+    <script src="cordova.js"></script>
+</head>
+<body>
+<ons-splitter>
+    <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
+        <ons-page>
+            <ons-list>
+                <ons-list-item onclick="fn.load('index.html')" tappable>
+                    Main
+                </ons-list-item>
+                <ons-list-item onclick="fn.load('setup.html')" tappable>
+                    Setup
+                </ons-list-item>
+                <a href="#" target="_blank" onclick="fn.url('http://google.com');">
+                    <ons-list-item tappable>
+                        Google
+                    </ons-list-item>
+                </a>
+            </ons-list>
+        </ons-page>
+    </ons-splitter-side>
+    <ons-splitter-content id="content" page="homePage.html"></ons-splitter-content>
+</ons-splitter>
 
-        <template id="setup.html">
-            <ons-page id="setup">
-                <ons-toolbar>
-                    <div class="center">SrMoura</div>
-                </ons-toolbar>
-                <ons-card>
-                    <div class="title">Setup</div>
-                    <div class="content">
-                        <p> <ons-input id="ip" modifier="underbar" placeholder="Insira ip:porta" float=""></ons-input> </p>
-                        <!--<p> <ons-input id="sub" modifier="underbar" placeholder="Subscribe Key" float=""></ons-input> </p>
-                        <p>
-                <ons-input id="sec" modifier="underbar" placeholder="Secret Key"
-                float=""></ons-input>
-              </p>-->
-                        <p style="margin-top: 30px;"> <ons-button id="go-to-main">Done</ons-button> </p>
-                        <p> <ons-button id="go-cancel">Cancel</ons-button> </p>
-                    </div>
-                </ons-card>
-            </ons-page>
-        </template>
-        <template id="setup-return.html">
-            <ons-page id="setup-return">
-                <ons-toolbar>
-                    <div class="left">
-                        <ons-toolbar-button onclick="fn.open()">
-                            <ons-icon icon="md-menu"></ons-icon>
-                        </ons-toolbar-button>
-                    </div>
-                    <div class="center">
-                        Setup
-</div>
-                </ons-toolbar>
-                <ons-card>
-                    <div class="title">Setup</div>
-                    <div class="content">
-                        <p> <ons-input id="ip" modifier="underbar" placeholder="Insira ip:porta" float=""></ons-input> </p>
-                        <!--<p> <ons-input id="sub" modifier="underbar" placeholder="Subscribe Key" float=""></ons-input> </p>
-                        <p>
-                <ons-input id="sec" modifier="underbar" placeholder="Secret Key"
-                float=""></ons-input>
-              </p>-->
-                        <p style="margin-top: 30px;"> <ons-button id="go-to-main">Done</ons-button> </p>
-                        <p> <ons-button id="go-cancel">Cancel</ons-button> </p>
-                    </div>
-                </ons-card>
-            </ons-page>
-        </template>
-    </body>
+<template id="homePage.html">
+    <ons-page id="homePage">
+        <ons-navigator id="myNavigator" page="index.html"></ons-navigator>
+    </ons-page>
+</template>
+
+<template id="index.html">
+    <ons-page id="index">
+        <ons-toolbar>
+            <div class="left">
+                <ons-toolbar-button onclick="fn.open()">
+                    <ons-icon icon="md-menu"></ons-icon>
+                </ons-toolbar-button>
+            </div>
+            <div class="center">SrMoura</div>
+        </ons-toolbar>
+
+        <ons-card id="card_cozinha">
+            <div class="title">
+                <i class="fad fa-lightbulb"></i>
+                &nbsp;Cozinha
+            </div>
+            <div class="content">
+                <p>
+                    <ons-switch  id="cozinha"></ons-switch>
+                    <ons-button autofocus="autofocus" value="index" name="index" onclick="onkitchen();">Ligar
+                    </ons-button>
+                </p>
+            </div>
+        </ons-card>
+
+        <ons-card id="card_sala">
+            <div class="title">
+
+                <i class="fad fa-lightbulb"></i>
+                &nbsp;Sala de estar
+            </div>
+            <div class="content">
+                <p>
+                    <ons-switch  id="sala"></ons-switch>
+                    <ons-button autofocus="autofocus" value="index" name="index" onclick="onliving();">Ligar
+                    </ons-button>
+                </p>
+            </div>
+        </ons-card>
+        <!-- <img src="b.png" style="display: none;" onload="ifgoToSetup()">-->
+    </ons-page>
+</template>
+
+<template id="setup.html">
+    <ons-page id="setup">
+        <ons-toolbar>
+            <div class="left">
+                <ons-toolbar-button onclick="fn.open()">
+                    <ons-icon icon="md-menu"></ons-icon>
+                </ons-toolbar-button>
+            </div>
+            <div class="center">SrMoura</div>
+        </ons-toolbar>
+        <ons-card>
+            <div class="title">Setup</div>
+            <div class="content">
+                <span id="ipshow"></span>
+                <p>
+                    <ons-input id="ip" modifier="underbar" placeholder="Insira ip:porta" float=""></ons-input>
+                </p>
+                <!--<p> <ons-input id="sub" modifier="underbar" placeholder="Subscribe Key" float=""></ons-input> </p>
+                <p>
+        <ons-input id="sec" modifier="underbar" placeholder="Secret Key"
+        float=""></ons-input>
+      </p>-->
+                <p style="margin-top: 30px;">
+                    <ons-button id="go-to-main">Done</ons-button>
+                </p>
+                <p>
+                    <ons-button id="go-cancel">Cancel</ons-button>
+                </p>
+            </div>
+        </ons-card>
+    </ons-page>
+</template>
+
+<template id="setup-return.html">
+    <ons-page id="setup-return">
+        <ons-toolbar>
+            <div class="left">
+                <ons-toolbar-button onclick="fn.open()">
+                    <ons-icon icon="md-menu"></ons-icon>
+                </ons-toolbar-button>
+            </div>
+            <div class="center">
+                Setup
+            </div>
+        </ons-toolbar>
+        <ons-card>
+            <div class="title">Setup</div>
+            <div class="content">
+                <p>
+                    <ons-input id="ip" modifier="underbar" placeholder="Insira ip:porta" float=""></ons-input>
+                </p>
+                <!--<p> <ons-input id="sub" modifier="underbar" placeholder="Subscribe Key" float=""></ons-input> </p>
+                <p>
+        <ons-input id="sec" modifier="underbar" placeholder="Secret Key"
+        float=""></ons-input>
+      </p>-->
+                <p style="margin-top: 30px;">
+                    <ons-button id="go-to-main">Done</ons-button>
+                </p>
+                <p>
+                    <ons-button id="go-cancel">Cancel</ons-button>
+                </p>
+            </div>
+        </ons-card>
+    </ons-page>
+</template>
+
+</body>
 </html>

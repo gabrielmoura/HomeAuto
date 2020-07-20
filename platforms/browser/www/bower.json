@@ -5,7 +5,7 @@
     "Gabriel Moura <develop@srmoura.com.br>"
   ],
   "description": "App",
-  "main": "",
+  "main": "index.html",
   "license": "Custom:SrMoura",
   "private": true,
   "ignore": [

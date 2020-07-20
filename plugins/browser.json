@@ -36,6 +36,9 @@
     },
     "cordova-plugin-vibration": {
       "PACKAGE_NAME": "br.com.srmoura.homeauto"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "br.com.srmoura.homeauto"
     }
   },
   "dependent_plugins": {
