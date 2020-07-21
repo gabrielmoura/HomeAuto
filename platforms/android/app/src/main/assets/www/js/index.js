@@ -29,7 +29,16 @@ document.addEventListener('dragdown', function(event) {
         setInfo();
     }
 });
-
+document.addEventListener('doubletap', function(event) {
+    if (event.target.matches('#card_cozinha')||event.target.matches('#card_sala')) {
+        getFunc();
+        console.log('getFunc')
+    }
+    if (event.target.matches('#card_info')) {
+        getInfo();
+        setInfo();
+    }
+});
 /**
  * Rotas
  */
@@ -211,6 +220,7 @@ function getInfo() {
             sessionStorage.setItem("memory", info.memory);
             console.log(info);
 
+
         })
         .catch(function (error) {
             console.log(error);
@@ -220,13 +230,13 @@ function getInfo() {
 
 function setInfo() {
     if (localStorage.getItem('hostname') != null) {
-        document.querySelector('#hostname').value = localStorage.getItem('hostname');
+        document.querySelector('#hostname').innerText = 'Host: '+localStorage.getItem('hostname');
     }
     if (sessionStorage.getItem('memory') != null) {
-        document.querySelector('#memory').value = sessionStorage.getItem('memory');
+        document.querySelector('#memory').innerText = 'Memoria: '+(sessionStorage.getItem('memory')*100)+'%';
     }
     if (sessionStorage.getItem('tempcpu') != null) {
-        document.querySelector('#tempcpu').value = sessionStorage.getItem('tempcpu');
+        document.querySelector('#tempcpu').innerText = 'Temp: '+sessionStorage.getItem('tempcpu');
     }
 }
 

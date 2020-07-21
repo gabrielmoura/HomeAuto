@@ -2,12 +2,13 @@
 <head>
     <meta content="text/html; charset=windows-1252" http-equiv="content-type">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval';connect-src 'self' http://*:*" />
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval';connect-src 'self' http://*:*"/>
     <link rel="stylesheet" href="bower_components/onsenui/css/onsenui.min.css">
     <link rel="stylesheet" href="bower_components/onsenui/css/onsen-css-components.min.css">
     <link rel="stylesheet" href="css/index.css">
     <script src="bower_components/onsenui/js/onsenui.min.js"></script>
-    <script src="js/index.min.js"></script>
+    <script src="js/index.js"></script>
     <script src="bower_components/axios/dist/axios.min.js"></script>
     <script src="cordova.js"></script>
 </head>
@@ -50,6 +51,19 @@
             <div class="center">SrMoura</div>
         </ons-toolbar>
 
+        <ons-card id="card_info">
+            <div class="title">
+                <i class="fad fa-lightbulb"></i>
+                &nbsp;Info
+            </div>
+            <div class="content">
+                <p>
+                    <span id="hostname"></span><br>
+                    <span id="tempcpu"></span><br>
+                    <span id="memory"></span>
+                </p>
+            </div>
+        </ons-card>
         <ons-card id="card_cozinha">
             <div class="title">
                 <i class="fad fa-lightbulb"></i>
@@ -57,7 +71,7 @@
             </div>
             <div class="content">
                 <p>
-                    <ons-switch  id="cozinha"></ons-switch>
+                    <ons-switch id="cozinha"></ons-switch>
                     <ons-button autofocus="autofocus" value="index" name="index" onclick="onkitchen();">Ligar
                     </ons-button>
                 </p>
@@ -72,7 +86,7 @@
             </div>
             <div class="content">
                 <p>
-                    <ons-switch  id="sala"></ons-switch>
+                    <ons-switch id="sala"></ons-switch>
                     <ons-button autofocus="autofocus" value="index" name="index" onclick="onliving();">Ligar
                     </ons-button>
                 </p>
