@@ -43,7 +43,7 @@ document.addEventListener('doubletap', function (event) {
 
 /*
  * Pergunta se deseja sair do app, caso seja celular ou tablet android
- */
+ *
 if (ons.platform.isAndroidPhone() || ons.platform.isAndroidTablet()) { // Utility function
     ons.setDefaultDeviceBackButtonListener(function (event) {
         ons.notification.confirm('Deseja fechar o aplicativo?') // Ask for confirmation
@@ -53,7 +53,7 @@ if (ons.platform.isAndroidPhone() || ons.platform.isAndroidTablet()) { // Utilit
                 }
             });
     });
-}
+}*/
 
 /*
  * Rotas

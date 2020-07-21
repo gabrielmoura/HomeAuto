@@ -7,7 +7,7 @@
     font-style: normal;
     font-weight: 900;
     font-display: block;
-    src: url("../fonts/fa-duotone-900.eot");
+    src: url("../fonts/fa-duotone-900.ttf") format("truetype");
 }
 
 @font-face {
@@ -15,7 +15,7 @@
     font-style: normal;
     font-weight: 300;
     font-display: auto;
-    src: url("../fonts/fa-light-300.eot");
+    src: url("../fonts/fa-light-300.ttf") format("truetype");
 }
 
 .fal {
