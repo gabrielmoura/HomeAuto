@@ -7,7 +7,8 @@ if (ons.platform.isIPhoneX()) { // Utility function
     // Add empty attribute to the <html> element
     document.documentElement.setAttribute('onsflag-iphonex-landscape', '');
 }
-/**
+
+/*
  * Iniciar
  */
 ons.ready(function () {
@@ -16,11 +17,11 @@ ons.ready(function () {
     }
 });
 
-/**
+/*
  * Eventos
  */
-document.addEventListener('dragdown', function(event) {
-    if (event.target.matches('#card_cozinha')||event.target.matches('#card_sala')) {
+document.addEventListener('dragdown', function (event) {
+    if (event.target.matches('#card_cozinha') || event.target.matches('#card_sala')) {
         getFunc();
         console.log('getFunc')
     }
@@ -29,8 +30,8 @@ document.addEventListener('dragdown', function(event) {
         setInfo();
     }
 });
-document.addEventListener('doubletap', function(event) {
-    if (event.target.matches('#card_cozinha')||event.target.matches('#card_sala')) {
+document.addEventListener('doubletap', function (event) {
+    if (event.target.matches('#card_cozinha') || event.target.matches('#card_sala')) {
         getFunc();
         console.log('getFunc')
     }
@@ -39,7 +40,22 @@ document.addEventListener('doubletap', function(event) {
         setInfo();
     }
 });
-/**
+
+/*
+ * Pergunta se deseja sair do app, caso seja celular ou tablet android
+ */
+if (ons.platform.isAndroidPhone() || ons.platform.isAndroidTablet()) { // Utility function
+    ons.setDefaultDeviceBackButtonListener(function (event) {
+        ons.notification.confirm('Deseja fechar o aplicativo?') // Ask for confirmation
+            .then(function (index) {
+                if (index === 1) { // OK button
+                    navigator.app.exitApp(); // Close the app
+                }
+            });
+    });
+}
+
+/*
  * Rotas
  */
 document.addEventListener('init', function (event) {
@@ -85,6 +101,9 @@ document.addEventListener('init', function (event) {
 
 });
 
+/*
+ * Funções
+ */
 
 function setIP(ip) {
     localStorage.setItem("ip", 'http://' + ip)
@@ -230,13 +249,13 @@ function getInfo() {
 
 function setInfo() {
     if (localStorage.getItem('hostname') != null) {
-        document.querySelector('#hostname').innerText = 'Host: '+localStorage.getItem('hostname');
+        document.querySelector('#hostname').innerText = 'Host: ' + localStorage.getItem('hostname');
     }
     if (sessionStorage.getItem('memory') != null) {
-        document.querySelector('#memory').innerText = 'Memoria: '+(sessionStorage.getItem('memory')*100)+'%';
+        document.querySelector('#memory').innerText = 'Memoria: ' + (sessionStorage.getItem('memory') * 100) + '%';
     }
     if (sessionStorage.getItem('tempcpu') != null) {
-        document.querySelector('#tempcpu').innerText = 'Temp: '+sessionStorage.getItem('tempcpu');
+        document.querySelector('#tempcpu').innerText = 'Temp: ' + sessionStorage.getItem('tempcpu');
     }
 }
 
@@ -266,7 +285,7 @@ window.fn.push = function (page, data) {
     window.open(myURL, '_blank');
 }*/
 
-window.fn.url = function (urlString) {
+window.fn.openurl = function (urlString) {
     myURL = encodeURI(urlString);
     window.open(myURL, '_blank');
 };

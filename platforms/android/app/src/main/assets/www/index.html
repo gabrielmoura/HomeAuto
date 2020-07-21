@@ -4,11 +4,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy"
           content="default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval';connect-src 'self' http://*:*"/>
-    <link rel="stylesheet" href="bower_components/onsenui/css/onsenui.min.css">
+    <link rel="stylesheet" href="bower_components/onsenui/css/onsenui-core.min.css">
     <link rel="stylesheet" href="bower_components/onsenui/css/onsen-css-components.min.css">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/index.min.css">
     <script src="bower_components/onsenui/js/onsenui.min.js"></script>
-    <script src="js/index.js"></script>
+    <script src="js/index.min.js"></script>
     <script src="bower_components/axios/dist/axios.min.js"></script>
     <script src="cordova.js"></script>
 </head>
@@ -23,7 +23,7 @@
                 <ons-list-item onclick="fn.load('setup.html')" tappable>
                     Setup
                 </ons-list-item>
-                <a href="#" target="_blank" onclick="fn.url('http://google.com');">
+                <a href="#" target="_blank" onclick="fn.openurl('http://google.com');">
                     <ons-list-item tappable>
                         Google
                     </ons-list-item>
@@ -45,7 +45,7 @@
         <ons-toolbar>
             <div class="left">
                 <ons-toolbar-button onclick="fn.open()">
-                    <ons-icon icon="md-menu"></ons-icon>
+                    <i class="fad fa-bars"></i>
                 </ons-toolbar-button>
             </div>
             <div class="center">SrMoura</div>
@@ -53,7 +53,7 @@
 
         <ons-card id="card_info">
             <div class="title">
-                <i class="fad fa-lightbulb"></i>
+                <i class="fad fa-microchip"></i>
                 &nbsp;Info
             </div>
             <div class="content">
@@ -64,9 +64,10 @@
                 </p>
             </div>
         </ons-card>
+
         <ons-card id="card_cozinha">
             <div class="title">
-                <i class="fad fa-lightbulb"></i>
+                <i class="fal fa-lightbulb"></i>
                 &nbsp;Cozinha
             </div>
             <div class="content">
@@ -81,7 +82,7 @@
         <ons-card id="card_sala">
             <div class="title">
 
-                <i class="fad fa-lightbulb"></i>
+                <i class="fal fa-lightbulb"></i>
                 &nbsp;Sala de estar
             </div>
             <div class="content">
@@ -101,7 +102,7 @@
         <ons-toolbar>
             <div class="left">
                 <ons-toolbar-button onclick="fn.open()">
-                    <ons-icon icon="md-menu"></ons-icon>
+                    <i class="fad fa-bars"></i>
                 </ons-toolbar-button>
             </div>
             <div class="center">SrMoura</div>
@@ -134,7 +135,7 @@
         <ons-toolbar>
             <div class="left">
                 <ons-toolbar-button onclick="fn.open()">
-                    <ons-icon icon="md-menu"></ons-icon>
+                    <i class="fad fa-bars"></i>
                 </ons-toolbar-button>
             </div>
             <div class="center">

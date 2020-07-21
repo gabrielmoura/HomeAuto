@@ -7,12 +7,12 @@ module.exports = function(grunt) {
     uglify: {
       dist: {
         src: ['resource/js/index.js'],
-        dest: 'src/assets/js/index.min.js'
+        dest: 'www/js/index.min.js'
       }
     },
     cssmin: {
       dist: {
-        src: ['resource/css/index.css'],
+        src: ['resource/css/index.css','resource/css/FontAwesome.css'],
         dest: 'www/css/index.min.css'
       }
     }
@@ -21,8 +21,9 @@ module.exports = function(grunt) {
   grunt.initConfig(gruntConfig);
 
   // carregando plugins
- grunt.loadNpmTasks('grunt-contrib-cssmin');
-grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  
   // tarefas
   grunt.registerTask('default',['cssmin','uglify']);
 };
