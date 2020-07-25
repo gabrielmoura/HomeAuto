@@ -15,6 +15,7 @@ ons.ready(function () {
     if (localStorage.getItem("ip") === null) {
         myNavigator.pushPage('setup.html');
     }
+    loopUpdate();
 });
 
 /*
@@ -58,6 +59,7 @@ if (ons.platform.isAndroidPhone() || ons.platform.isAndroidTablet()) { // Utilit
 /*
  * Rotas
  */
+
 document.addEventListener('init', function (event) {
 
     /*if (localStorage.getItem("ip") === null) {
@@ -70,12 +72,28 @@ document.addEventListener('init', function (event) {
         if (localStorage.getItem('ip') != null) {
             document.querySelector('#ipshow').innerText = 'Ip definido: ' + localStorage.getItem('ip');
         }
+        if (localStorage.getItem('loop') != null & localStorage.getItem('loop') == 'on') {
+
+            document.querySelector('#loop').checked = true;
+        } else {
+            document.querySelector('#loop').checked = false;
+        }
 
         page.querySelector('#go-to-main').onclick = function () {
             // Store in localStorage
 
             setIP(document.querySelector('#ip').value);
             //getFunc();
+            document.querySelector('#myNavigator')
+                .resetToPage('index.html', {data: {title: 'Auto'}})
+                .then(getFunc());
+
+        };
+
+        document.querySelector('#loop').onchange = function () {
+
+            setLoop((document.querySelector("#loop").checked) ? "on" : "off");
+
             document.querySelector('#myNavigator')
                 .resetToPage('index.html', {data: {title: 'Auto'}})
                 .then(getFunc());
@@ -111,16 +129,21 @@ function setIP(ip) {
 }
 
 function setFunc() {
-    if (localStorage.getItem('cozinha') == "on") {
-        document.querySelector('#cozinha').checked = true
-    } else {
-        document.querySelector('#cozinha').checked = false
+    if (document.querySelector("#cozinha") != null) {
+        if (localStorage.getItem('cozinha') == "on") {
+            document.querySelector('#cozinha').checked = true
+        } else {
+            document.querySelector('#cozinha').checked = false
+        }
     }
-    if (localStorage.getItem('sala') == "on") {
-        document.querySelector('#sala').checked = true
-    } else {
-        document.querySelector('#sala').checked = false
+    if (document.querySelector("#sala") != null) {
+        if (localStorage.getItem('sala') == "on") {
+            document.querySelector('#sala').checked = true
+        } else {
+            document.querySelector('#sala').checked = false
+        }
     }
+    localStorage.setItem('lastup_func', Date.now())
 }
 
 function getFunc() {
@@ -142,7 +165,9 @@ function getFunc() {
                     }
                 }
             }
+
             setFunc();
+
         })
         .catch(function (error) {
             console.log(error);
@@ -248,15 +273,16 @@ function getInfo() {
 }
 
 function setInfo() {
-    if (localStorage.getItem('hostname') != null) {
-        document.querySelector('#hostname').innerText = 'Host: ' + localStorage.getItem('hostname');
+    if (localStorage.getItem('hostname') != null & document.querySelector("#hostname") != null) {
+        document.querySelector("#hostname").innerText = "Host: " + localStorage.getItem("hostname");
     }
-    if (sessionStorage.getItem('memory') != null) {
-        document.querySelector('#memory').innerText = 'Memoria: ' + (sessionStorage.getItem('memory') * 100) + '%';
+    if (sessionStorage.getItem('memory') != null & document.querySelector("#memory") != null) {
+        document.querySelector("#memory").innerText = "Memoria: " + (sessionStorage.getItem("memory") * 100) + "%";
     }
-    if (sessionStorage.getItem('tempcpu') != null) {
-        document.querySelector('#tempcpu').innerText = 'Temp: ' + sessionStorage.getItem('tempcpu');
+    if (sessionStorage.getItem('tempcpu') != null & document.querySelector("#tempcpu") != null) {
+        document.querySelector("#tempcpu").innerText = "Temp: " + sessionStorage.getItem("tempcpu");
     }
+    localStorage.setItem('lastup_info', Date.now())
 }
 
 window.fn = {};
@@ -294,3 +320,23 @@ window.fn.pop = function () {
     var content = document.querySelector('#myNavigator');
     content.popPage();
 };
+
+function setLoop(stringOnOff) {
+    localStorage.setItem("loop", stringOnOff)
+}
+
+function loopUpdate() {
+    if (document.querySelector("#cozinha") != null) {
+        setInterval(function () {
+            if (localStorage.getItem('loop') === 'off') {
+                clearInterval();
+            }
+            if (localStorage.getItem('loop') === 'on') {
+                getInfo();
+                setInfo();
+                getFunc();
+            }
+        }, 1000 * 2);
+    }
+
+}

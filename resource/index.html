@@ -36,7 +36,7 @@
 
 <template id="homePage.html">
     <ons-page id="homePage">
-        <ons-navigator id="myNavigator" page="index.html"></ons-navigator>
+        <ons-navigator id="myNavigator" page="index.html" animation="fade"></ons-navigator>
     </ons-page>
 </template>
 
@@ -124,6 +124,16 @@
                 </p>
                 <p>
                     <ons-button id="go-cancel">Cancel</ons-button>
+                </p>
+            </div>
+        </ons-card>
+
+        <ons-card>
+            <div class="title">Loop</div>
+            <div class="content">
+                <span id="loopshow"></span>
+                <p>
+                    <ons-switch id="loop"></ons-switch>
                 </p>
             </div>
         </ons-card>
